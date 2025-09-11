@@ -33,7 +33,6 @@ export default function PreMatriculaForm() {
 
   const semestres = ['1er Semestre', '2do Semestre', '3er Semestre', '4to Semestre', '5to Semestre', '6to Semestre'];
   const cursosEjemplo = ['Desarrollo de Aplicaciones Móviles', 'Mejora de Método en el Trabajo', 'Formación de Monitores de Empresa'];
-  const periodosReingresante = ['2025-II', '2026-I', '2026-II'];
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#f8f9fb' }}>

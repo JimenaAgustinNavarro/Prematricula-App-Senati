@@ -1,4 +1,3 @@
-// app/(tabs)/inicio.js
 import { View, Text, Pressable } from 'react-native';
 import { Link } from 'expo-router';
 

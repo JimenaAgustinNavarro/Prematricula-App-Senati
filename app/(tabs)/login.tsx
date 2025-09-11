@@ -1,6 +1,4 @@
-// app/login.js
 import { SafeAreaView, View, Text, TextInput, Pressable } from 'react-native';
-import { Link } from 'expo-router';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 
