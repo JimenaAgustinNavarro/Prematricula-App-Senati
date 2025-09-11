@@ -16,6 +16,7 @@ export default function Navigation() {
         <Stack.Screen name="Inicio" component={InicioScreen} />
         <Stack.Screen name="Prematricula" component={FormScreen} />
         <Stack.Screen name="Pago" component={PagoScreen} />
+        <Stack.Screen name="Confirmación" component={ConfirmationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

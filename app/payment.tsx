@@ -1,9 +1,18 @@
-import { useState } from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
+import { useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { useRouter } from "expo-router";
 
 export default function PagoScreen() {
   const [image, setImage] = useState<string | null>(null);
+  const router = useRouter();
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -17,12 +26,26 @@ export default function PagoScreen() {
     }
   };
 
+  const handleSubmit = () => {
+    Alert.alert(
+      "Comprobante enviado",
+      "Tu comprobante de pago ha sido registrado correctamente.",
+      [
+        {
+          text: "OK",
+          onPress: () => router.replace("/confirmation")
+        },
+      ]
+    );
+  };
+
   return (
     <View style={styles.container}>
       {/* Título */}
       <Text style={styles.title}>Comprobante de Pago</Text>
       <Text style={styles.subtitle}>
-        Adjunta una foto clara del comprobante de pago. Asegúrate de que todos los detalles sean legibles.
+        Adjunta una foto clara del comprobante de pago. Asegúrate de que todos
+        los detalles sean legibles.
       </Text>
 
       {/* Caja de carga */}
@@ -32,16 +55,24 @@ export default function PagoScreen() {
         ) : (
           <>
             <Text style={styles.uploadTitle}>Cargar Imagen</Text>
-            <Text style={styles.uploadSubtitle}>Formato: JPG, PNG. Tamaño máximo: 5MB</Text>
+            <Text style={styles.uploadSubtitle}>
+              Formato: JPG, PNG. Tamaño máximo: 5MB
+            </Text>
             <TouchableOpacity style={styles.uploadButton} onPress={pickImage}>
-              <Text style={{ color: "#fff", fontWeight: "600" }}>Seleccionar Archivo</Text>
+              <Text style={{ color: "#fff", fontWeight: "600" }}>
+                Seleccionar Archivo
+              </Text>
             </TouchableOpacity>
           </>
         )}
       </View>
 
       {/* Botón de subir */}
-      <TouchableOpacity style={styles.submitButton} onPress={() => alert("Comprobante enviado")}>
+      <TouchableOpacity
+        style={styles.submitButton}
+        onPress={handleSubmit}
+        disabled={!image} // solo habilita si ya cargó imagen
+      >
         <Text style={{ color: "#fff", fontWeight: "600" }}>Subir</Text>
       </TouchableOpacity>
     </View>
