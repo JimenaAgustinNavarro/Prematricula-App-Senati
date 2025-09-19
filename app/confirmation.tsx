@@ -1,5 +1,6 @@
 import { SafeAreaView, View, Text, Pressable, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Confirmation() {
   const router = useRouter();
@@ -119,24 +120,27 @@ export default function Confirmation() {
 
         {/* Botón */}
         <Pressable
-          style={{
-            backgroundColor: "#007bff",
-            padding: 15,
-            borderRadius: 8,
-            marginTop: 30,
-          }}
-          onPress={() => router.replace("/(tabs)/inicio")}
-        >
-          <Text
-            style={{
-              color: "white",
-              textAlign: "center",
-              fontWeight: "600",
-            }}
-          >
-            Volver al Inicio
-          </Text>
-        </Pressable>
+  style={{
+    backgroundColor: "#007bff",
+    padding: 15,
+    borderRadius: 8,
+    marginTop: 30,
+  }}
+  onPress={async () => {
+    await AsyncStorage.setItem("matricula_estado", "en_proceso");
+    router.replace("/(tabs)/inicio");
+  }}
+>
+  <Text
+    style={{
+      color: "white",
+      textAlign: "center",
+      fontWeight: "600",
+    }}
+  >
+    Volver al Inicio
+  </Text>
+</Pressable>
       </ScrollView>
     </SafeAreaView>
   );

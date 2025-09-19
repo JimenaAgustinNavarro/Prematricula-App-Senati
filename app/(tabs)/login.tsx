@@ -62,7 +62,7 @@ export default function LoginScreen() {
         }}
       />
       <TextInput
-        placeholder="Correo electrónico"
+        placeholder="Correo institucional"
         value={email}
         onChangeText={setEmail}
         style={{

@@ -1,6 +1,6 @@
-// app/pre-matricula.tsx
-//import AsyncStorage from "@react-native-async-storage/async-storage";
-//import DateTimePicker from "@react-native-community/datetimepicker";
+//app/pre-matricula.tsx
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from '@react-native-picker/picker';
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from "react";
@@ -48,7 +48,7 @@ export default function PreMatriculaForm() {
   const semestres = ['1er Semestre', '2do Semestre', '3er Semestre', '4to Semestre', '5to Semestre', '6to Semestre'];
   const cursosEjemplo = ['Desarrollo de Aplicaciones Móviles', 'Mejora de Método en el Trabajo', 'Formación de Monitores de Empresa'];
 
-  /*useEffect(() => {
+  useEffect(() => {
     // Cargar ID precargado desde AsyncStorage
     const loadData = async () => {
       try {
@@ -59,7 +59,7 @@ export default function PreMatriculaForm() {
       }
     };
     loadData();
-  }, []);*/
+  }, []);
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
@@ -85,7 +85,7 @@ export default function PreMatriculaForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  /*const handleSubmit = async () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
       try {
         await AsyncStorage.setItem('preMatricula', JSON.stringify(form));
@@ -94,7 +94,7 @@ export default function PreMatriculaForm() {
         console.error("Error guardando datos", error);
       }
     }
-  };*/
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#f8f9fb' }}>
@@ -140,7 +140,7 @@ export default function PreMatriculaForm() {
     onPress={() => setShowDatePicker(true)} 
   />
 
-  {/*showDatePicker && (
+  {showDatePicker && (
     <DateTimePicker
       value={form.fecha ? new Date(form.fecha) : new Date()}
       mode="date"
@@ -153,7 +153,7 @@ export default function PreMatriculaForm() {
         }
       }}
     />
-  )*/}
+  )}
 
   {errors.fecha && <Text style={{ color: 'red', marginTop: 5 }}>{errors.fecha}</Text>}
 </View>
@@ -233,7 +233,7 @@ export default function PreMatriculaForm() {
         {/* Botón Ir al pago */}
         <Pressable
           style={{ backgroundColor: '#007bff', padding: 15, borderRadius: 8 }}
-          /*onPress={handleSubmit}*/
+          onPress={handleSubmit}
         >
           <Text style={{ color: 'white', textAlign: 'center', fontWeight: '600' }}>Ir al pago</Text>
         </Pressable>
